@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Server, Monitor, Shield, HelpCircle, Plus, CheckCircle2, AlertTriangle } from 'lucide-react'
 import Header from './Header'
+import { getApiUrl } from '../utils/api'
 import './IT.css'
 
 interface ItOverviewApi {
@@ -29,7 +30,7 @@ interface ApiResponse<T> {
 }
 
 async function fetchItData<T>(path: string, signal: AbortSignal): Promise<T> {
-    const response = await fetch(path, { signal })
+    const response = await fetch(getApiUrl(path), { signal })
     if (!response.ok) {
         throw new Error(`Request failed with status ${response.status}`)
     }
@@ -347,7 +348,7 @@ const ItTicketsSection = () => {
         try {
             setIsSubmitting(true)
             setFormError(null)
-            const response = await fetch('/api/it/tickets', {
+            const response = await fetch(getApiUrl('/api/it/tickets'), {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

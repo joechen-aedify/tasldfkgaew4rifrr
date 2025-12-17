@@ -1,6 +1,7 @@
 import { createContext, useContext, useState, useEffect } from 'react'
 import type { ReactNode } from 'react'
 import { loadConfig } from '../config'
+import { getApiUrl } from '../utils/api'
 
 /**
  * Authentication context interface
@@ -58,8 +59,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
                 return false
             }
 
-            // Call local AUTH module API (proxied through Vite to backend)
-            const response = await fetch('/api/auth/login', {
+            // Call local AUTH module API (using VITE_API_URL from .env)
+            const response = await fetch(getApiUrl('/api/auth/login'), {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -128,8 +129,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
                 return false
             }
 
-            // Call local AUTH module API (proxied through Vite to backend)
-            const response = await fetch('/api/auth/register', {
+            // Call local AUTH module API (using VITE_API_URL from .env)
+            const response = await fetch(getApiUrl('/api/auth/register'), {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -153,7 +154,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
             // After successful registration, automatically log in
             // Call login API to get token
-            const loginResponse = await fetch('/api/auth/login', {
+            const loginResponse = await fetch(getApiUrl('/api/auth/login'), {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -213,7 +214,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
                 if (testingAccount?.email && testingAccount?.password) {
                     // Auto-login with testing account via local API
-                    const response = await fetch('/api/auth/login', {
+                    const response = await fetch(getApiUrl('/api/auth/login'), {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',

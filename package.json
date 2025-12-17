@@ -4,25 +4,24 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "concurrently \"npm run frontend\" \"npm run backend\"",
-    "frontend": "vite --host",
-    "backend": "node modulesBackend/index.js",
+    "dev": "npm start",
+    "start": "vite --host",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview",
-    "sync-config": "cp ../template_1_config.json ./public/template_1_config.json"
+    "preview": "vite preview"
   },
   "dependencies": {
+    "bcrypt": "^5.1.1",
     "body-parser": "^2.2.1",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
-    "bcrypt": "^5.1.1",
     "express": "^5.2.1",
     "jsonwebtoken": "^9.0.2",
     "lucide-react": "^0.556.0",
     "pg": "^8.13.1",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
+    "react-is": "^19.2.3",
     "react-router-dom": "^7.10.1",
     "recharts": "^3.5.1"
   },

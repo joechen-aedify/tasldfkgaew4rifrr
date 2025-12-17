@@ -11,13 +11,7 @@ export default defineConfig({
       // Watch the config file for changes
       ignored: ['!**/public/template_1_config.json'],
     },
-    proxy: {
-      // Proxy API requests from the frontend dev server to the modules backend
-      // so calls like /api/hr/employees hit http://localhost:3008/api/hr/employees.
-      '/api': {
-        target: 'http://localhost:3008',
-        changeOrigin: true,
-      },
-    },
+    // Proxy removed - API calls now use VITE_API_URL from .env file
+    // Set VITE_API_URL in .env to configure API endpoint (e.g., VITE_API_URL=http://localhost:3008)
   },
 })

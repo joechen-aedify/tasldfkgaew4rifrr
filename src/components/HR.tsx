@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Users, Briefcase, UserPlus, Calendar, Award, Search, Plus, Filter, Download, Edit, Trash2 } from 'lucide-react'
 import Header from './Header'
+import { getApiUrl } from '../utils/api'
 import './HR.css'
 
 interface EmployeeApiRow {
@@ -61,7 +62,7 @@ interface ApiResponse<T> {
  * and abort support for component unmount.
  */
 async function fetchHrData<T>(path: string, signal: AbortSignal): Promise<T> {
-    const response = await fetch(path, { signal })
+    const response = await fetch(getApiUrl(path), { signal })
     if (!response.ok) {
         throw new Error(`Request failed with status ${response.status}`)
     }
@@ -215,7 +216,7 @@ const EmployeeDataSection = () => {
         try {
             setIsSubmitting(true)
             setFormError(null)
-            const response = await fetch('/api/hr/employees', {
+            const response = await fetch(getApiUrl('/api/hr/employees'), {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -567,7 +568,7 @@ const BenefitsSection = () => {
         try {
             setIsSubmitting(true)
             setFormError(null)
-            const response = await fetch('/api/hr/benefits', {
+            const response = await fetch(getApiUrl('/api/hr/benefits'), {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -840,7 +841,7 @@ const OnboardingSection = () => {
         try {
             setIsSubmitting(true)
             setFormError(null)
-            const response = await fetch('/api/hr/onboarding', {
+            const response = await fetch(getApiUrl('/api/hr/onboarding'), {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -1124,7 +1125,7 @@ const RecruitmentSection = () => {
         try {
             setIsSubmitting(true)
             setFormError(null)
-            const response = await fetch('/api/hr/recruitment', {
+            const response = await fetch(getApiUrl('/api/hr/recruitment'), {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -1397,7 +1398,7 @@ const AbsenceManagementSection = () => {
         try {
             setIsSubmitting(true)
             setFormError(null)
-            const response = await fetch('/api/hr/absences', {
+            const response = await fetch(getApiUrl('/api/hr/absences'), {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
