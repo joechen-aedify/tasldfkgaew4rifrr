@@ -54,7 +54,7 @@ const Login = () => {
         <div className="login-container">
             <div className="login-card">
                 <div className="login-header">
-                    <h1 className="login-title">Welcome Backss!!1ss2344ss</h1>
+                    <h1 className="login-title">Welcome Backs</h1>
                     <p className="login-subtitle">Sign in to your account</p>
                 </div>
 
